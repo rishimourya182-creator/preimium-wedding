@@ -1,0 +1,551 @@
+/* ==========================================================
+   GLOBAL STYLES & LUXURY VARIABLES
+   ========================================================== */
+:root {
+    --primary-gold: #D4AF37;
+    --accent-gold: #F3E5AB;
+    --dark-bg: #0F1412;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(212, 175, 55, 0.25);
+    --text-light: #F9F9F9;
+    --text-muted: #B3B3B3;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================
+   TYPOGRAPHY & UTILITIES
+   ========================================================== */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    color: var(--primary-gold);
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================
+   PRELOADER
+   ========================================================== */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: var(--dark-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loader-content .monogram {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary-gold);
+    display: block;
+}
+
+.loader-content h2 {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+.loader-content .line {
+    width: 60px;
+    height: 2px;
+    background: var(--primary-gold);
+    margin: 15px auto 0;
+}
+
+/* ==========================================================
+   HERO SECTION
+   ========================================================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('images/1.jpg') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15,20,18,0.6) 0%, rgba(15,20,18,0.9) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero .subtitle {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin: 15px 0;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.hero .ampersand {
+    color: var(--primary-gold);
+    font-style: italic;
+}
+
+.invite-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.hero-divider {
+    color: var(--primary-gold);
+    margin: 25px 0;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 14px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+    color: #000;
+    font-weight: 600;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+.btn-secondary {
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-gold);
+    color: #000;
+}
+
+/* ==========================================================
+   COUNTDOWN SECTION
+   ========================================================== */
+.countdown-section {
+    padding: 80px 0;
+    background: rgba(255, 255, 255, 0.01);
+}
+
+#timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.time-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 25px 20px;
+    border-radius: 12px;
+    min-width: 100px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.time-card span {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--primary-gold);
+    display: block;
+    line-height: 1;
+}
+
+.time-card p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* ==========================================================
+   COUPLE SECTION
+   ========================================================== */
+.couple-section {
+    padding: 60px 0 100px;
+}
+
+.couple-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.couple-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 40px;
+    border-radius: 16px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.couple-card h3 {
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.couple-card h4 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.couple-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.couple-divider {
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+}
+
+/* ==========================================================
+   TIMELINE SECTION
+   ========================================================== */
+.timeline-section {
+    padding: 100px 0;
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.event-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 30px;
+    border-radius: 16px;
+    transition: var(--transition);
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-gold);
+}
+
+.event-card.highlight {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 100%);
+    border-color: var(--primary-gold);
+}
+
+.event-date {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-gold);
+    margin-bottom: 10px;
+}
+
+.event-date span {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+}
+
+.event-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.event-details p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* ==========================================================
+   GALLERY SECTION
+   ========================================================== */
+.gallery-section {
+    padding: 100px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--card-border);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ==========================================================
+   VENUE SECTION
+   ========================================================== */
+.venue-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.venue-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 50px 30px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.venue-icon {
+    font-size: 2.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 20px;
+}
+
+.venue-card h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.venue-card p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* ==========================================================
+   RSVP SECTION
+   ========================================================== */
+.rsvp-section {
+    padding: 100px 0;
+}
+
+.rsvp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 50px 40px;
+    border-radius: 20px;
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.rsvp-card p {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.rsvp-form .form-group {
+    margin-bottom: 20px;
+}
+
+.rsvp-form input, 
+.rsvp-form select {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.rsvp-form input:focus, 
+.rsvp-form select:focus {
+    border-color: var(--primary-gold);
+}
+
+.rsvp-form select option {
+    background: var(--dark-bg);
+    color: var(--text-light);
+}
+
+.rsvp-form button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+footer {
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+footer p {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+}
+
+footer .family-footer {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+/* ==========================================================
+   FLOATING BUTTONS
+   ========================================================== */
+.top-btn, #musicBtn {
+    position: fixed;
+    bottom: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--dark-bg);
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 100;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.top-btn {
+    right: 30px;
+}
+
+#musicBtn {
+    right: 90px;
+}
+
+.top-btn:hover, #musicBtn:hover {
+    background: var(--primary-gold);
+    color: #000;
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN
+   ========================================================== */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .couple-grid {
+        flex-direction: column;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #timer {
+        gap: 10px;
+    }
+
+    .time-card {
+        padding: 15px 10px;
+        min-width: 70px;
+    }
+
+    .time-card span {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
