@@ -1,753 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Wedding Celebration</title>
-    
-    <!-- Premium Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khushboo ❤️ Mayank | Royal Wedding Invitation</title>
 
-    <style>
-        :root {
-            --primary-gold: #d4af37;
-            --light-gold: #f3e5ab;
-            --dark-bg: #0b1d17;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --border-gold: rgba(212, 175, 55, 0.3);
-            --text-light: #f8f9fa;
-            --text-muted: #c0c0c0;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2c0e14 0%, #4a1521 50%, #1a0509 100%);
+      overflow-x: hidden;
+      color: #fceade;
+      text-align: center;
+      min-height: 100vh;
+    }
 
-        /* Luxury Typography */
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 2px;
-        }
+    /* Floating Flower Petals */
+    .petals {
+      position: fixed;
+      top: -10px;
+      width: 12px;
+      height: 12px;
+      background: rgba(244, 143, 177, 0.6);
+      border-radius: 15px 0 15px 0;
+      animation: fall linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-        .script-font {
-            font-family: 'Great Vibes', cursive;
-            color: var(--primary-gold);
-            font-size: 3rem;
-            line-height: 1;
-        }
+    @keyframes fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+    }
 
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-gold);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
+    /* Fullscreen Royal Mahal Dwar Overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #3d101a 0%, #120306 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
 
-        /* Preloader */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: var(--dark-bg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
+    /* Mahal Gate Outer Frame */
+    .mahal-gate {
+      width: 320px;
+      padding: 45px 25px;
+      background: linear-gradient(145deg, #d4af37, #8a6d1c);
+      border-radius: 160px 160px 20px 20px;
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(0,0,0,0.5);
+      border: 3px solid #ffe89c;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.4s ease;
+    }
 
-        #loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+    .mahal-gate:hover {
+      transform: scale(1.03);
+    }
 
-        .loader-ring {
-            width: 80px;
-            height: 80px;
-            border: 2px solid transparent;
-            border-top: 2px solid var(--primary-gold);
-            border-radius: 50%;
-            animation: spin 1.2s linear infinite;
-        }
+    .gate-inner {
+      background: #2a0810;
+      border-radius: 140px 140px 10px 10px;
+      padding: 40px 20px;
+      border: 2px solid #d4af37;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    .gate-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
+      color: #f7d774;
+      margin-top: 15px;
+      letter-spacing: 1px;
+    }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(rgba(11, 29, 23, 0.7), rgba(11, 29, 23, 0.85)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80') center/cover no-repeat;
-            padding: 0 20px;
-        }
+    .gate-subtitle {
+      font-size: 13px;
+      color: #e0b880;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-        .hero-content {
-            max-width: 800px;
-            animation: fadeIn 2s ease-in-out;
-        }
+    .gate-icon {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            color: var(--light-gold);
-            text-transform: uppercase;
-            margin: 15px 0;
-            font-family: 'Cinzel Decorative', serif;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
+    /* Main Container */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards ease-in-out;
+      position: relative;
+      z-index: 2;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 36px;
-            color: var(--dark-bg);
-            background: linear-gradient(45deg, var(--primary-gold), var(--light-gold));
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
+    .header-tag {
+      font-size: 20px;
+      color: #f7d774;
+      letter-spacing: 2px;
+    }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-        }
+    .subtitle {
+      font-size: 18px;
+      color: #e0b880;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 10px;
+    }
 
-        /* Section Layouts */
-        section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 76px;
+      color: #f7d774;
+      margin: 10px 0;
+      text-shadow: 0 0 10px rgba(247, 215, 116, 0.3);
+    }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+    /* Countdown Styling */
+    .count {
+      margin: 35px auto;
+      background: rgba(42, 8, 16, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 20px 10px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      display: flex;
+      justify-content: space-around;
+    }
 
-        .section-header h2 {
-            font-size: 3rem;
-            color: var(--primary-gold);
-            text-transform: uppercase;
-        }
+    .box {
+      flex: 1;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #e0b880;
+    }
 
-        .section-header div {
-            width: 80px;
-            height: 2px;
-            background: var(--primary-gold);
-            margin: 10px auto 0;
-        }
+    .box span {
+      font-size: 32px;
+      font-weight: 600;
+      display: block;
+      color: #f7d774;
+    }
 
-        /* Countdown */
-        .countdown-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
+    /* Palace Rooms / Event Chambers Styling */
+    .section {
+      margin-top: 50px;
+    }
 
-        .time-box {
-            padding: 25px 15px;
-        }
+    .section h2 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 32px;
+      color: #f7d774;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    }
 
-        .time-box span {
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: var(--light-gold);
-            font-family: 'Cormorant Garamond', serif;
-        }
+    .room-card {
+      background: linear-gradient(135deg, rgba(65, 16, 26, 0.85), rgba(30, 5, 10, 0.9));
+      padding: 22px 25px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-left: 5px solid #d4af37;
+      text-align: left;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
 
-        .time-box p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
+    .room-card:hover {
+      transform: translateY(-4px);
+      border-color: #f7d774;
+    }
 
-        /* Timeline Event Cards */
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    .room-tag {
+      font-size: 12px;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+      display: block;
+    }
 
-        .event-card {
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .room-card h4 {
+      color: #f7d774;
+      font-size: 22px;
+      font-weight: 600;
+    }
 
-        .event-card:hover {
-            transform: translateY(-8px);
-        }
+    .room-card p {
+      font-size: 16px;
+      color: #fceade;
+      margin-top: 2px;
+    }
 
-        .event-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
-        }
+    /* Venue Card Styling */
+    .venue-card {
+      background: linear-gradient(135deg, rgba(65, 16, 26, 0.85), rgba(30, 5, 10, 0.9));
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      margin-top: 15px;
+    }
 
-        .event-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--primary-gold);
-            margin-bottom: 10px;
-        }
+    .venue-box {
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 15px;
+      padding: 30px 20px;
+      border: 2px dashed #d4af37;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
 
-        .event-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            color: var(--light-gold);
-        }
+    .venue-box h3 {
+      font-size: 22px;
+      color: #f7d774;
+      margin-top: 10px;
+    }
 
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+    .venue-box p {
+      font-size: 14px;
+      color: #e0b880;
+      margin-top: 5px;
+    }
 
-        .gallery-item {
-            height: 300px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-        }
+    /* Interactive Buttons */
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      margin-top: 40px;
+    }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+    .btn {
+      padding: 15px 35px;
+      background: linear-gradient(135deg, #d4af37, #aa820a);
+      border: none;
+      color: #1a0509;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+    }
 
-        /* Family Section */
-        .family-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
+    .btn-secondary {
+      background: transparent;
+      color: #f7d774;
+      border: 1.5px solid #d4af37;
+      box-shadow: none;
+    }
 
-        .family-box {
-            padding: 40px;
-            text-align: center;
-        }
+    .btn-secondary:hover {
+      background: rgba(212, 175, 55, 0.15);
+    }
 
-        .family-box h3 {
-            font-size: 2rem;
-            color: var(--primary-gold);
-            margin-bottom: 15px;
-        }
+    /* Audio Toggle Button */
+    #audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #d4af37;
+      color: #1a0509;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      cursor: pointer;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
 
-        /* RSVP Form */
-        .rsvp-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-gold);
-            border-radius: 8px;
-            color: var(--text-light);
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-gold);
-        }
-
-        .form-control option {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            cursor: pointer;
-            border: none;
-        }
-
-        /* Fixed Music & Top Controls */
-        .floating-btn {
-            position: fixed;
-            bottom: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-gold);
-            color: var(--dark-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            border: none;
-            z-index: 100;
-            transition: transform 0.3s ease;
-        }
-
-        .floating-btn:hover {
-            transform: scale(1.1);
-        }
-
-        #musicBtn { right: 30px; }
-        .top-btn { right: 90px; text-decoration: none; }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--border-gold);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .script-font { font-size: 2.2rem; }
-            section { padding: 60px 15px; }
-            .section-header h2 { font-size: 2.2rem; }
-        }
-    </style>
+    footer {
+      margin-top: 50px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: #f7d774;
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- Loading Screen -->
-    <div id="loader">
-        <div class="loader-ring"></div>
-        <h2 style="margin-top: 20px; color: var(--primary-gold); font-family: 'Cormorant Garamond';">The Celebration Begins</h2>
-    </div>
+  <!-- Audio Toggle Button -->
+  <button id="audio-control" onclick="toggleAudio()" title="Toggle Music">🎵</button>
+  
+  <!-- Direct Audio Stream from Google Drive Link -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://docs.google.com/uc?export=download&id=19dEaR9R3_ZUFzTsNRz_kl4MeURrBhvG2" type="audio/mpeg">
+  </audio>
 
-    <!-- Hero Header -->
-    <header class="hero">
-        <div class="hero-content">
-            <p class="script-font">You are cordially invited to celebrate</p>
-            <h1>Wedding Celebration</h1>
-            <p>Together with our families, we invite you to share in our joyous occasion.</p>
-            <a href="#events" class="btn">View Celebration Details</a>
-        </div>
-    </header>
+  <!-- Mahal Dwar Entrance Overlay -->
+  <div id="overlay">
+    <div class="mahal-gate" onclick="openMahal()">
+      <div class="gate-inner">
+        <div class="gate-icon">🏰</div>
+        <div class="gate-title">SHAHI DWAR</div>
+        <div class="gate-subtitle">Tap To Enter Mahal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Palace Content -->
+  <div class="container" id="main">
+
+    <p class="header-tag">॥ श्री गणेशाय नमः ॥</p>
+
+    <p class="subtitle">Royal Wedding Invitation</p>
+
+    <h1>Khushboo <br>❤️<br> Mayank</h1>
 
     <!-- Countdown Timer -->
-    <section>
-        <div class="section-header">
-            <h2>Counting Down To The Big Day</h2>
-            <div></div>
-        </div>
-        <div class="countdown-container">
-            <div class="glass-card time-box">
-                <span id="days">00</span>
-                <p>Days</p>
-            </div>
-            <div class="glass-card time-box">
-                <span id="hours">00</span>
-                <p>Hours</p>
-            </div>
-            <div class="glass-card time-box">
-                <span id="minutes">00</span>
-                <p>Minutes</p>
-            </div>
-            <div class="glass-card time-box">
-                <span id="seconds">00</span>
-                <p>Seconds</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Event Timeline -->
-    <section id="events">
-        <div class="section-header">
-            <h2>Wedding Events</h2>
-            <div></div>
-        </div>
-        <div class="timeline-grid">
-            <div class="glass-card event-card">
-                <div class="event-date">26 Nov</div>
-                <h3>Tilak Ceremony</h3>
-                <p>An auspicious beginning to our wedding festivities.</p>
-            </div>
-            <div class="glass-card event-card">
-                <div class="event-date">28 Nov</div>
-                <h3>Ganesh Pujan</h3>
-                <p>Invoking blessings for health, wisdom, and success.</p>
-            </div>
-            <div class="glass-card event-card">
-                <div class="event-date">29 Nov</div>
-                <h3>Haldi Ceremony & Photoshoot</h3>
-                <p>A vibrant morning filled with turmeric and laughter.</p>
-            </div>
-            <div class="glass-card event-card">
-                <div class="event-date">30 Nov (Morning)</div>
-                <h3>Mandap & Mayan Pujan</h3>
-                <p>Traditional rituals under the sacred mandap.</p>
-            </div>
-            <div class="glass-card event-card">
-                <div class="event-date">30 Nov (Evening)</div>
-                <h3>Mehndi & Sangeet</h3>
-                <p>An evening of intricate henna designs and music.</p>
-            </div>
-            <div class="glass-card event-card">
-                <div class="event-date">1 Dec</div>
-                <h3>Mamera Ceremony</h3>
-                <p>Heartfelt traditions with family & loved ones.</p>
-            </div>
-            <div class="glass-card event-card">
-                <div class="event-date">2 Dec</div>
-                <h3>Baraat & Reception</h3>
-                <p>The grand celebration of our holy matrimony.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section>
-        <div class="section-header">
-            <h2>Gallery</h2>
-            <div></div>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80" alt="Gallery 1"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80" alt="Gallery 2"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80" alt="Gallery 3"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80" alt="Gallery 4"></div>
-        </div>
-    </section>
-
-    <!-- Family Section -->
-    <section>
-        <div class="section-header">
-            <h2>Our Families</h2>
-            <div></div>
-        </div>
-        <div class="family-container">
-            <div class="glass-card family-box">
-                <h3>Bride's Family</h3>
-                <p>Smt. & Shri [Bride's Parents Name]</p>
-                <p style="color: var(--text-muted); margin-top: 10px;">Warmly invite you to bless their daughter.</p>
-            </div>
-            <div class="glass-card family-box">
-                <h3>Groom's Family</h3>
-                <p>Smt. & Shri [Groom's Parents Name]</p>
-                <p style="color: var(--text-muted); margin-top: 10px;">Solicit your graceful presence to bless their son.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Venue Section -->
-    <section style="text-align: center;">
-        <div class="section-header">
-            <h2>The Venue</h2>
-            <div></div>
-        </div>
-        <div class="glass-card" style="padding: 50px 20px; max-width: 700px; margin: 0 auto;">
-            <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 20px;"></i>
-            <h3 style="font-size: 2rem; color: var(--light-gold); margin-bottom: 10px;">The Royal Palace Resort</h3>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">Grand Ballroom, MG Road, City Center, India</p>
-            <a href="https://maps.google.com" target="_blank" class="btn">Get Directions</a>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section>
-        <div class="section-header">
-            <h2>RSVP</h2>
-            <div></div>
-        </div>
-        <form class="glass-card rsvp-form">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Full Name" required>
-            </div>
-            <div class="form-group">
-                <input type="tel" class="form-control" placeholder="Phone Number" required>
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" placeholder="Number of Guests" min="1" required>
-            </div>
-            <div class="form-group">
-                <select class="form-control" required>
-                    <option value="" disabled selected>Will You Attend?</option>
-                    <option value="yes">Yes, Joyfully Accept</option>
-                    <option value="no">Regretfully Decline</option>
-                </select>
-            </div>
-            <button type="submit" class="btn">Confirm Attendance</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>Crafted with ❤️ for Our Special Day</p>
-    </footer>
-
-    <!-- Audio Element & Controls -->
-    <audio id="weddingMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-
-    <button id="musicBtn" class="floating-btn" title="Toggle Music">
-        <i class="fas fa-music"></i>
-    </button>
-
-    <a href="#" class="floating-btn top-btn" title="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- JavaScript Logic -->
-    <script>
-        // Preloader Logic
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            loader.classList.add('hidden');
-        });
-
-        // Wedding Countdown Logic
-        const weddingDate = new Date("December 2, 2026 18:00:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            if (distance < 0) {
-                document.getElementById("days").innerText = "00";
-                document.getElementById("hours").innerText = "00";
-                document.getElementById("minutes").innerText = "00";
-                document.getElementById("seconds").innerText = "00";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            Aapke code ko ek modern, *luxurious aur premium wedding website* ke roop mein redesign kiya gaya hai. Isme smooth animations, elegant glassmorphism styling, clean hierarchy aur responsive layouts ka upyog kiya gaya hai.
-
----
-
-### *1. Premium HTML Structure (index.html)*
-
-Isme aap original elements (music button, loader, back-to-top button) intact hain, aur modern sections (Groom & Bride intro, high-end design cards) include kiye gaye hain:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Wedding | Celebrating Love</title>
-
-    <!-- Google Fonts: Luxury Typography -->
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-    <link href="[https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap)" rel="stylesheet">
-
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css)">
-
-    <!-- CSS stylesheet -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Elegant Preloader -->
-    <div id="loader">
-        <div class="loader-content">
-            <span class="monogram">G & B</span>
-            <h2>Wedding Celebration</h2>
-            <div class="line"></div>
-        </div>
+    <div class="count" id="countdown-wrapper">
+      <div class="box"><span id="days">0</span>Days</div>
+      <div class="box"><span id="hours">0</span>Hours</div>
+      <div class="box"><span id="minutes">0</span>Minutes</div>
+      <div class="box"><span id="seconds">0</span>Seconds</div>
     </div>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <span class="subtitle">Together With Their Families</span>
-            <h1>Groom <span class="ampersand">&</span> Bride</h1>
-            <p class="invite-text">Warmly Invite You To Share In Their Joy</p>
-            
-            <div class="hero-divider">✦</div>
-            
-            <a href="#timeline" class="btn-primary">Explore Invitation</a>
-        </div>
-    </header>
+    <!-- Palace Chambers (Wedding Schedule & Dates) -->
+    <div class="section">
+      <h2>Wedding Schedule & Chambers</h2>
 
-    <!-- Countdown Section -->
-    <section class="countdown-section">
-        <div class="container">
-            <h2 class="section-title">Counting Down To Forever</h2>
-            <div id="timer">
-                <div class="time-card">
-                    <span id="days">00</span>
-                    <p>Days</p>
-                </div>
-                <div class="time-card">
-                    <span id="hours">00</span>
-                    <p>Hours</p>
-                </div>
-                <div class="time-card">
-                    <span id="minutes">00</span>
-                    <p>Minutes</p>
-                </div>
-                <div class="time-card">
-                    <span id="seconds">00</span>
-                    <p>Seconds</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="room-card">
+        <span class="room-tag">Chamber 1 • 26 November</span>
+        <h4>Tilak Ceremony</h4>
+        <p>Auspicious start of the royal celebrations.</p>
+      </div>
 
-    <!-- Couple Details Section -->
-    <section class="couple-section">
-        <div class="container">
-            <div class="couple-grid">
-                <div class="couple-card">
-                    <h3>The Groom</h3>
-                    <h4>Groom's Full Name</h4>
-                    <p>Son of Mr. & Mrs. Groom's Parents</p>
-                </div>
-                <div class="couple-divider">✨</div>
-                <div class="couple-card">
-                    <h3>The Bride</h3>
-                    <h4>Bride's Full Name</h4>
-                    <p>Daughter of Mr. & Mrs. Bride's Parents</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="room-card">
+        <span class="room-tag">Chamber 2 • 28 November</span>
+        <h4>Ganesh Pujan</h4>
+        <p>Invoking blessings for health and happiness.</p>
+      </div>
 
-    <!-- Events Timeline Section -->
-    <section id="timeline" class="timeline-section">
-        <div class="container">
-            <h2 class="section-title">Wedding Itinerary</h2>
-            <p class="section-subtitle">Join us in the celebrations</p>
+      <div class="room-card">
+        <span class="room-tag">Chamber 3 • 29 November</span>
+        <h4>Haldi & Photoshoot</h4>
+        <p>A yellow splash of love and laughter.</p>
+      </div>
 
-            <div class="timeline-grid">
-                <div class="event-card">
-                    <div class="event-date">26 Nov</div>
-                    <div class="event-details">
-                        <h3>Tilak Ceremony</h3>
-                        <p>An auspicious start to our wedding festivities.</p>
-                    </div>
-                </div>
+      <div class="room-card">
+        <span class="room-tag">Chamber 4 • 30 November Morning</span>
+        <h4>Mandap & Mayan Pujan</h4>
+        <p>Sacred rituals under the holy mandap.</p>
+      </div>
 
-                <div class="event-card">
-                    <div class="event-date">28 Nov</div>
-                    <div class="event-details">
-                        <h3>Ganesh Pujan</h3>
-                        <p>Seeking divine blessings for a joyful start.</p>
-                    </div>
-                </div>
+      <div class="room-card">
+        <span class="room-tag">Chamber 5 • 30 November Evening</span>
+        <h4>Mehndi Shoot</h4>
+        <p>Coloring hands with deep shades of love.</p>
+      </div>
 
-                <div class="event-card">
-                    <div class="event-date">29 Nov</div>
-                    <div class="event-details">
-                        <h3>Haldi Ceremony & Photoshoot</h3>
-                        <p>A vibrant gathering filled with yellow hues and happiness.</p>
-                    </div>
-                </div>
+      <div class="room-card">
+        <span class="room-tag">Chamber 6 • 1 December</span>
+        <h4>Mamera</h4>
+        <p>Welcoming family with grand royal warmth.</p>
+      </div>
 
-                <div class="event-card">
-                    <div class="event-date">30 Nov <span>(Morning)</span></div>
-                    <div class="event-details">
-                        <h3>Mandap & Mayan Pujan</h3>
-                        <p>Traditional rituals in the warmth of home.</p>
-                    </div>
-                </div>
+      <div class="room-card">
+        <span class="room-tag">Chamber 7 • 2 December Evening</span>
+        <h4>Party & Grand Barat</h4>
+        <p>The main royal wedding procession & reception.</p>
+      </div>
+    </div>
 
-                <div class="event-card">
-                    <div class="event-date">30 Nov <span>(Evening)</span></div>
-                    <div class="event-details">
-                        <h3>Mehndi Ceremony & Photoshoot</h3>
-                        <p>Henna patterns, music, and joyful evening moments.</p>
-                    </div>
-                </div>
+    <!-- Venue Location Section -->
+    <div class="section">
+      <h2>Royal Venue & Location</h2>
+      <div class="venue-card">
+        <a href="https://maps.app.goo.gl/n3AP7sBnNFPf86gx9" target="_blank" style="text-decoration: none;">
+          <div class="venue-box">
+            <div style="font-size: 45px;">📍</div>
+            <h3>Grand Wedding Venue</h3>
+            <p>Click here to open exact Google Maps location & directions</p>
+          </div>
+        </a>
 
-                <div class="event-card">
-                    <div class="event-date">01 Dec</div>
-                    <div class="event-details">
-                        <h3>Mamera Ceremony</h3>
-                        <p>Welcoming family with love, gifts, and tradition.</p>
-                    </div>
-                </div>
+        <a href="https://maps.app.goo.gl/n3AP7sBnNFPf86gx9" target="_blank" class="btn btn-secondary">
+          🗺️ Get Route Directions
+        </a>
+      </div>
+    </div>
 
-                <div class="event-card highlight">
-                    <div class="event-date">02 Dec</div>
-                    <div class="event-details">
-                        <h3>Baraat & Wedding Reception</h3>
-                        <p>The grand finale! Join us as we tie the knot.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Interactive Calendar & RSVP Action Buttons -->
+    <div class="actions">
+      <!-- Calendar Notification Button -->
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Khushboo+%26+Mayank+Royal+Wedding&dates=20261202T180000/20261203T020000&details=Join+us+for+the+Royal+Wedding+Celebration!&location=Wedding+Venue" target="_blank" class="btn btn-secondary">
+        🔔 Set Calendar Reminder
+      </a>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section">
-        <div class="container">
-            <h2 class="section-title">Captured Moments</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="images/1.jpg" alt="Gallery Photo 1"></div>
-                <div class="gallery-item"><img src="images/2.jpg" alt="Gallery Photo 2"></div>
-                <div class="gallery-item"><img src="images/3.jpg" alt="Gallery Photo 3"></div>
-                <div class="gallery-item"><img src="images/4.jpg" alt="Gallery Photo 4"></div>
-                <div class="gallery-item"><img src="images/5.jpg" alt="Gallery Photo 5"></div>
-                <div class="gallery-item"><img src="images/6.jpg" alt="Gallery Photo 6
+      <!-- WhatsApp RSVP Button -->
+      <a href="https://wa.me/918818909508?text=Hello!%20I%20will%20be%20attending%20the%20wedding." target="_blank" class="btn">
+        💬 RSVP on WhatsApp
+      </a>
+    </div>
+
+    <footer>
+      See You At The Royal Wedding ❤️
+    </footer>
+
+  </div>
+
+  <script>
+    var music = document.getElementById("bg-music");
+    var audioBtn = document.getElementById("audio-control");
+    var isPlaying = false;
+
+    function openMahal() {
+      var overlay = document.getElementById("overlay");
+      overlay.style.opacity = "0";
+      setTimeout(function() {
+        overlay.style.display = "none";
+        document.getElementById("main").style.display = "block";
+        audioBtn.style.display = "flex";
+      }, 1000);
+
+      // Play background song on entering palace
+      music.play().then(function() {
+        isPlaying = true;
+        audioBtn.innerText = "🎵";
+      }).catch(function(e) {
+        isPlaying = false;
+        audioBtn.innerText = "🔇";
+      });
+    }
+
+    function toggleAudio() {
+      if (isPlaying) {
+        music.pause();
+        audioBtn.innerText = "🔇";
+      } else {
+        music.play();
+        audioBtn.innerText = "🎵";
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Countdown Timer
+    var wedding = new Date("December 2, 2026 18:00:00").getTime();
+
+    var timer = setInterval(function() {
+      var now = new Date().getTime();
+      var gap = wedding - now;
+
+      if (gap <= 0) {
+        clearInterval(timer);
+        document.getElementById("countdown-wrapper").innerHTML = "<h3 style='color:#f7d774; width:100%;'>The Royal Day is Here! 🎉</h3>";
+        return;
+      }
+
+      document.getElementById("days").innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById("minutes").innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("seconds").innerText = Math.floor((gap % (1000 * 60)) / 1000);
+    }, 1000);
+
+    // Falling Petals Animation
+    for (let i = 0; i < 25; i++) {
+      let p = document.createElement("div");
+      p.className = "petals";
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.animationDuration = (5 + Math.random() * 5) + "s";
+      p.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
