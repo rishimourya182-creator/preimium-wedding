@@ -19,101 +19,136 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #2c0e14 0%, #4a1521 50%, #1a0509 100%);
+      background: #1a050b;
+      color: #fce4ec;
       overflow-x: hidden;
-      color: #fceade;
       text-align: center;
       min-height: 100vh;
     }
 
-    /* Floating Flower Petals */
-    .petals {
+    /* Floating Golden Sparks / Petals */
+    .spark {
       position: fixed;
       top: -10px;
-      width: 12px;
-      height: 12px;
-      background: rgba(244, 143, 177, 0.6);
-      border-radius: 15px 0 15px 0;
+      width: 8px;
+      height: 8px;
+      background: gold;
+      border-radius: 50%;
+      box-shadow: 0 0 10px gold;
       animation: fall linear infinite;
-      z-index: 1;
+      z-index: 10;
       pointer-events: none;
     }
 
     @keyframes fall {
-      0% { transform: translateY(-20px) rotate(0deg); opacity: 0.9; }
-      100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Fullscreen Royal Mahal Dwar Overlay */
-    #overlay {
+    /* Mahal Dvar (Palace Gate Overlay) */
+    #palace-gate {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, #3d101a 0%, #120306 100%);
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d0205;
+      overflow: hidden;
+    }
+
+    .door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, #4a0011 0%, #2b000a 100%);
+      border: 4px solid #d4af37;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 999;
-      transition: opacity 1s ease, visibility 1s ease;
+      transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+      box-shadow: inset 0 0 50px rgba(212, 175, 55, 0.3);
     }
 
-    /* Mahal Gate Outer Frame */
-    .mahal-gate {
-      width: 320px;
-      padding: 45px 25px;
-      background: linear-gradient(145deg, #d4af37, #8a6d1c);
-      border-radius: 160px 160px 20px 20px;
-      box-shadow: 0 0 50px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(0,0,0,0.5);
-      border: 3px solid #ffe89c;
+    .door-left {
+      left: 0;
+      border-right: 2px solid #d4af37;
+    }
+
+    .door-right {
+      right: 0;
+      border-left: 2px solid #d4af37;
+    }
+
+    /* Gate Center Badge */
+    .gate-badge {
+      position: absolute;
+      z-index: 1000;
+      background: radial-gradient(circle, #800020, #4a0011);
+      border: 3px solid #d4af37;
+      border-radius: 50%;
+      width: 260px;
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
       cursor: pointer;
-      position: relative;
-      transition: transform 0.4s ease;
+      animation: pulse 2s infinite ease-in-out;
+      padding: 15px;
     }
 
-    .mahal-gate:hover {
-      transform: scale(1.03);
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+      50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(212, 175, 55, 0.8); }
     }
 
-    .gate-inner {
-      background: #2a0810;
-      border-radius: 140px 140px 10px 10px;
-      padding: 40px 20px;
-      border: 2px solid #d4af37;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-    }
-
-    .gate-title {
+    .gate-badge h2 {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 22px;
-      color: #f7d774;
-      margin-top: 15px;
-      letter-spacing: 1px;
-    }
-
-    .gate-subtitle {
-      font-size: 13px;
-      color: #e0b880;
-      margin-top: 8px;
+      font-size: 20px;
+      color: #d4af37;
       text-transform: uppercase;
       letter-spacing: 2px;
     }
 
-    .gate-icon {
-      font-size: 55px;
-      margin-bottom: 10px;
+    .gate-badge p {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #fff;
+      margin-top: 5px;
     }
 
-    /* Main Container */
-    .container {
-      max-width: 680px;
+    .gate-badge span {
+      font-size: 12px;
+      color: #f3c68f;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Open Gate Animation Classes */
+    .open-left {
+      transform: translateX(-100%);
+    }
+
+    .open-right {
+      transform: translateX(100%);
+    }
+
+    /* Main Mahal Inside Container */
+    .mahal-container {
+      max-width: 700px;
       margin: 0 auto;
-      padding: 30px 20px 60px;
+      padding: 40px 20px 80px;
       display: none;
       opacity: 0;
-      animation: fadeIn 1.5s forwards ease-in-out;
+      animation: fadeIn 1.5s forwards 0.8s ease-in-out;
       position: relative;
       z-index: 2;
     }
@@ -122,138 +157,109 @@
       to { opacity: 1; }
     }
 
-    .header-tag {
-      font-size: 20px;
-      color: #f7d774;
-      letter-spacing: 2px;
-    }
-
-    .subtitle {
+    .royal-header {
+      color: #d4af37;
       font-size: 18px;
-      color: #e0b880;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-top: 10px;
+      letter-spacing: 2px;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 76px;
-      color: #f7d774;
-      margin: 10px 0;
-      text-shadow: 0 0 10px rgba(247, 215, 116, 0.3);
+      font-size: 75px;
+      color: #f7d070;
+      margin: 15px 0;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
     }
 
-    /* Countdown Styling */
-    .count {
-      margin: 35px auto;
-      background: rgba(42, 8, 16, 0.7);
-      backdrop-filter: blur(10px);
+    /* Countdown Banner */
+    .countdown-card {
+      background: rgba(74, 0, 17, 0.6);
+      border: 1px solid #d4af37;
+      backdrop-filter: blur(8px);
       padding: 20px 10px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(212, 175, 55, 0.4);
+      margin: 30px auto;
       display: flex;
       justify-content: space-around;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    .box {
+    .count-box {
       flex: 1;
       font-size: 12px;
       text-transform: uppercase;
-      color: #e0b880;
+      color: #e0c38c;
     }
 
-    .box span {
+    .count-box span {
       font-size: 32px;
       font-weight: 600;
       display: block;
-      color: #f7d774;
+      color: #f7d070;
     }
 
-    /* Palace Rooms / Event Chambers Styling */
-    .section {
-      margin-top: 50px;
-    }
-
-    .section h2 {
+    /* Palace Rooms (Kamre) Section */
+    .room-title {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 32px;
-      color: #f7d774;
-      margin-bottom: 30px;
-      text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+      font-size: 26px;
+      color: #d4af37;
+      margin: 50px 0 25px;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding-bottom: 10px;
     }
 
     .room-card {
-      background: linear-gradient(135deg, rgba(65, 16, 26, 0.85), rgba(30, 5, 10, 0.9));
-      padding: 22px 25px;
+      background: linear-gradient(145deg, rgba(60, 5, 18, 0.9), rgba(30, 2, 9, 0.9));
+      border: 1px solid rgba(212, 175, 55, 0.4);
       border-radius: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-left: 5px solid #d4af37;
+      padding: 25px 20px;
+      margin-bottom: 25px;
       text-align: left;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
     .room-card:hover {
-      transform: translateY(-4px);
-      border-color: #f7d774;
+      transform: translateY(-5px);
+      border-color: #d4af37;
     }
 
-    .room-tag {
+    .room-number {
       font-size: 12px;
       color: #d4af37;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
       display: block;
     }
 
     .room-card h4 {
-      color: #f7d774;
+      color: #f7d070;
       font-size: 22px;
       font-weight: 600;
+      margin-bottom: 6px;
     }
 
     .room-card p {
       font-size: 16px;
-      color: #fceade;
-      margin-top: 2px;
+      color: #fbe3e8;
     }
 
-    /* Venue Card Styling */
-    .venue-card {
-      background: linear-gradient(135deg, rgba(65, 16, 26, 0.85), rgba(30, 5, 10, 0.9));
-      border-radius: 20px;
-      padding: 30px 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      margin-top: 15px;
+    /* Venue Poster Card */
+    .venue-room {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(80, 0, 20, 0.8), rgba(40, 0, 10, 0.8));
     }
 
-    .venue-box {
-      background: rgba(212, 175, 55, 0.1);
-      border-radius: 15px;
-      padding: 30px 20px;
-      border: 2px dashed #d4af37;
-      margin-bottom: 20px;
-      cursor: pointer;
+    .venue-icon {
+      font-size: 45px;
+      margin-bottom: 10px;
     }
 
-    .venue-box h3 {
-      font-size: 22px;
-      color: #f7d774;
-      margin-top: 10px;
-    }
-
-    .venue-box p {
-      font-size: 14px;
-      color: #e0b880;
-      margin-top: 5px;
-    }
-
-    /* Interactive Buttons */
+    /* Action Buttons */
     .actions {
       display: flex;
       flex-direction: column;
@@ -264,15 +270,15 @@
 
     .btn {
       padding: 15px 35px;
-      background: linear-gradient(135deg, #d4af37, #aa820a);
+      background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
       border: none;
-      color: #1a0509;
+      color: #1a050b;
       font-size: 16px;
       font-weight: 600;
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-      transition: all 0.3s ease;
+      transition: transform 0.2s ease, background 0.3s ease;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
@@ -280,13 +286,13 @@
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #f7d070 0%, #c49a18 100%);
     }
 
     .btn-secondary {
       background: transparent;
-      color: #f7d774;
+      color: #f7d070;
       border: 1.5px solid #d4af37;
       box-shadow: none;
     }
@@ -295,14 +301,14 @@
       background: rgba(212, 175, 55, 0.15);
     }
 
-    /* Audio Toggle Button */
+    /* Music Control Floating Button */
     #audio-control {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #d4af37;
-      color: #1a0509;
-      border: none;
+      background: #4a0011;
+      color: #d4af37;
+      border: 1px solid #d4af37;
       width: 50px;
       height: 50px;
       border-radius: 50%;
@@ -316,132 +322,126 @@
     }
 
     footer {
-      margin-top: 50px;
+      margin-top: 60px;
       font-family: 'Great Vibes', cursive;
       font-size: 48px;
-      color: #f7d774;
+      color: #f7d070;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Audio Toggle Button -->
+  <!-- Floating Music Toggle Button -->
   <button id="audio-control" onclick="toggleAudio()" title="Toggle Music">🎵</button>
   
-  <!-- Direct Audio Stream from Google Drive Link -->
+  <!-- Direct Audio Link from Google Drive -->
   <audio id="bg-music" loop preload="auto">
     <source src="https://docs.google.com/uc?export=download&id=19dEaR9R3_ZUFzTsNRz_kl4MeURrBhvG2" type="audio/mpeg">
   </audio>
 
-  <!-- Mahal Dwar Entrance Overlay -->
-  <div id="overlay">
-    <div class="mahal-gate" onclick="openMahal()">
-      <div class="gate-inner">
-        <div class="gate-icon">🏰</div>
-        <div class="gate-title">SHAHI DWAR</div>
-        <div class="gate-subtitle">Tap To Enter Mahal</div>
-      </div>
+  <!-- Palace Gate Overlay (Mahal Dvar) -->
+  <div id="palace-gate">
+    <div class="door door-left" id="door-l"></div>
+    <div class="door door-right" id="door-r"></div>
+    
+    <div class="gate-badge" id="badge" onclick="openPalaceGate()">
+      <h2>Wedding</h2>
+      <p>Invitation</p>
+      <span>Tap To Enter Mahal 🏰</span>
     </div>
   </div>
 
-  <!-- Main Palace Content -->
-  <div class="container" id="main">
+  <!-- Inside Palace Container -->
+  <div class="mahal-container" id="main-mahal">
 
-    <p class="header-tag">॥ श्री गणेशाय नमः ॥</p>
-
-    <p class="subtitle">Royal Wedding Invitation</p>
+    <p class="royal-header">॥ श्री गणेशाय नमः ॥</p>
+    <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-top: 10px; color: #d4af37;">Royal Wedding Celebration</p>
 
     <h1>Khushboo <br>❤️<br> Mayank</h1>
 
     <!-- Countdown Timer -->
-    <div class="count" id="countdown-wrapper">
-      <div class="box"><span id="days">0</span>Days</div>
-      <div class="box"><span id="hours">0</span>Hours</div>
-      <div class="box"><span id="minutes">0</span>Minutes</div>
-      <div class="box"><span id="seconds">0</span>Seconds</div>
+    <div class="countdown-card" id="countdown-wrapper">
+      <div class="count-box"><span id="days">0</span>Days</div>
+      <div class="count-box"><span id="hours">0</span>Hours</div>
+      <div class="count-box"><span id="minutes">0</span>Minutes</div>
+      <div class="count-box"><span id="seconds">0</span>Seconds</div>
     </div>
 
-    <!-- Palace Chambers (Wedding Schedule & Dates) -->
+    <!-- Palace Rooms (Aangan & Mandaps with Dates) -->
     <div class="section">
-      <h2>Wedding Schedule & Chambers</h2>
+      <h2 class="room-title">Royal Ceremony Rooms</h2>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 1 • 26 November</span>
-        <h4>Tilak Ceremony</h4>
-        <p>Auspicious start of the royal celebrations.</p>
+        <span class="room-number">Kaksh 1 • Tilak Mandap</span>
+        <h4>26 November</h4>
+        <p>Tilak Ceremony</p>
       </div>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 2 • 28 November</span>
-        <h4>Ganesh Pujan</h4>
-        <p>Invoking blessings for health and happiness.</p>
+        <span class="room-number">Kaksh 2 • Pooja Aangan</span>
+        <h4>28 November</h4>
+        <p>Ganesh Pujan</p>
       </div>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 3 • 29 November</span>
-        <h4>Haldi & Photoshoot</h4>
-        <p>A yellow splash of love and laughter.</p>
+        <span class="room-number">Kaksh 3 • Rang Mandap</span>
+        <h4>29 November</h4>
+        <p>Haldi & Photoshoot</p>
       </div>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 4 • 30 November Morning</span>
-        <h4>Mandap & Mayan Pujan</h4>
-        <p>Sacred rituals under the holy mandap.</p>
+        <span class="room-number">Kaksh 4 • Mandap Aangan</span>
+        <h4>30 November Morning</h4>
+        <p>Mandap & Mayan Pujan</p>
       </div>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 5 • 30 November Evening</span>
-        <h4>Mehndi Shoot</h4>
-        <p>Coloring hands with deep shades of love.</p>
+        <span class="room-number">Kaksh 5 • Shringar Kaksh</span>
+        <h4>30 November Evening</h4>
+        <p>Mehndi Shoot</p>
       </div>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 6 • 1 December</span>
-        <h4>Mamera</h4>
-        <p>Welcoming family with grand royal warmth.</p>
+        <span class="room-number">Kaksh 6 • Rasm Kaksh</span>
+        <h4>1 December</h4>
+        <p>Mamera Ceremony</p>
       </div>
 
       <div class="room-card">
-        <span class="room-tag">Chamber 7 • 2 December Evening</span>
-        <h4>Party & Grand Barat</h4>
-        <p>The main royal wedding procession & reception.</p>
+        <span class="room-number">Kaksh 7 • Vivah Mandap</span>
+        <h4>2 December Evening</h4>
+        <p>Grand Wedding Party & Barat</p>
       </div>
     </div>
 
-    <!-- Venue Location Section -->
+    <!-- Venue Location Room -->
     <div class="section">
-      <h2>Royal Venue & Location</h2>
-      <div class="venue-card">
-        <a href="https://maps.app.goo.gl/n3AP7sBnNFPf86gx9" target="_blank" style="text-decoration: none;">
-          <div class="venue-box">
-            <div style="font-size: 45px;">📍</div>
-            <h3>Grand Wedding Venue</h3>
-            <p>Click here to open exact Google Maps location & directions</p>
-          </div>
-        </a>
-
+      <h2 class="room-title">Venue Location</h2>
+      <div class="room-card venue-room">
+        <div class="venue-icon">📍</div>
+        <h4>Grand Wedding Palace</h4>
+        <p style="margin-bottom: 20px;">Tap below to view exact navigation route on Google Maps</p>
+        
         <a href="https://maps.app.goo.gl/n3AP7sBnNFPf86gx9" target="_blank" class="btn btn-secondary">
-          🗺️ Get Route Directions
+          🗺️ Open Venue in Google Maps
         </a>
       </div>
     </div>
 
-    <!-- Interactive Calendar & RSVP Action Buttons -->
+    <!-- Action Buttons (Calendar Notification & WhatsApp RSVP) -->
     <div class="actions">
-      <!-- Calendar Notification Button -->
-      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Khushboo+%26+Mayank+Royal+Wedding&dates=20261202T180000/20261203T020000&details=Join+us+for+the+Royal+Wedding+Celebration!&location=Wedding+Venue" target="_blank" class="btn btn-secondary">
-        🔔 Set Calendar Reminder
+      <a href="https://wa.me/918818909508?text=Hello!%20I%20will%20be%20attending%20the%20royal%20wedding." target="_blank" class="btn">
+        💬 RSVP on WhatsApp
       </a>
 
-      <!-- WhatsApp RSVP Button -->
-      <a href="https://wa.me/918818909508?text=Hello!%20I%20will%20be%20attending%20the%20wedding." target="_blank" class="btn">
-        💬 RSVP on WhatsApp
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Khushboo+%26+Mayank+Royal+Wedding&dates=20261202T180000/20261203T020000" target="_blank" class="btn btn-secondary">
+        📅 Set Google Calendar Notification
       </a>
     </div>
 
     <footer>
-      See You At The Royal Wedding ❤️
+      See You At The Palace ❤️
     </footer>
 
   </div>
@@ -451,16 +451,19 @@
     var audioBtn = document.getElementById("audio-control");
     var isPlaying = false;
 
-    function openMahal() {
-      var overlay = document.getElementById("overlay");
-      overlay.style.opacity = "0";
-      setTimeout(function() {
-        overlay.style.display = "none";
-        document.getElementById("main").style.display = "block";
-        audioBtn.style.display = "flex";
-      }, 1000);
+    function openPalaceGate() {
+      // Gate animation
+      document.getElementById("door-l").classList.add("open-left");
+      document.getElementById("door-r").classList.add("open-right");
+      document.getElementById("badge").style.display = "none";
 
-      // Play background song on entering palace
+      setTimeout(function() {
+        document.getElementById("palace-gate").style.display = "none";
+        document.getElementById("main-mahal").style.display = "block";
+        audioBtn.style.display = "flex";
+      }, 1200);
+
+      // Play audio on opening gate
       music.play().then(function() {
         isPlaying = true;
         audioBtn.innerText = "🎵";
@@ -490,7 +493,7 @@
 
       if (gap <= 0) {
         clearInterval(timer);
-        document.getElementById("countdown-wrapper").innerHTML = "<h3 style='color:#f7d774; width:100%;'>The Royal Day is Here! 🎉</h3>";
+        document.getElementById("countdown-wrapper").innerHTML = "<h3 style='color:#f7d070; width:100%;'>The Royal Day is Here! 🎉</h3>";
         return;
       }
 
@@ -500,12 +503,12 @@
       document.getElementById("seconds").innerText = Math.floor((gap % (1000 * 60)) / 1000);
     }, 1000);
 
-    // Falling Petals Animation
+    // Falling Gold Sparks Animation
     for (let i = 0; i < 25; i++) {
       let p = document.createElement("div");
-      p.className = "petals";
+      p.className = "spark";
       p.style.left = Math.random() * 100 + "vw";
-      p.style.animationDuration = (5 + Math.random() * 5) + "s";
+      p.style.animationDuration = (4 + Math.random() * 5) + "s";
       p.style.animationDelay = Math.random() * 5 + "s";
       document.body.appendChild(p);
     }
